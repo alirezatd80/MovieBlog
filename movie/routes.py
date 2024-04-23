@@ -8,3 +8,7 @@ def mainpage():
 @app.route('/Movies')
 def mainmovies():
     return render_template("movies.html")
+
+@app.route('/mavoiepage')
+def moviepage():
+    return render_template("singlemoviepage.html")
