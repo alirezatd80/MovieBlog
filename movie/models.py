@@ -75,6 +75,41 @@ class Admin:
         connection.close()
         return admins
     
+    def get_admin(username):
+        connection = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="1111",
+            database="moviebank"
+        )
+        query = f"SELECT * FROM moviebank.admin where username = '{username}';"
+        
+        order = connection.cursor()
+    
+        order.execute(query)
+        admin = order.fetchall()
+        
+        order.close()
+        connection.close()
+        return admin
+    
+    def is_user(username , password) -> bool: 
+        usernames = [] 
+        adminlist = Admin.getall()
+        for i in adminlist:
+            usernames.append(i[1])
+        if username in usernames:
+            test = Admin.get_admin(username)
+            user = test[0]
+            if password == user[2]:
+                return True
+            else:
+                return False
+            
+        else:
+            return False
+    
+        
 
             
 class Movie:
@@ -166,4 +201,4 @@ class Comment:
         order.close()
         connection.close()
         
-    
+
