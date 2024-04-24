@@ -2,8 +2,8 @@ import mysql.connector
 
 
 class Admin:
-    def __init__(self,name,password,photo_url) :
-        self.name = name
+    def __init__(self,username,password,photo_url) :
+        self.username = username
         self.password = password
         self.photo_url = photo_url
     
@@ -14,12 +14,11 @@ class Admin:
             password="1111",
             database="moviebank"
         )
-        query = "INSERT INTO admin (name, password, photo_url) VALUES (%s, %s, %s)"
-        values = (f"{self.name}", f"{self.password}", f"{self.photo_url}")
-    
+        query = f"INSERT INTO `moviebank`.`admin` (`username`, `password`, `photo_url`) VALUES ('{self.username}', '{self.password}', '{self.photo_url}');"
+        
         order = connection.cursor()
     
-        order.execute(query,values)
+        order.execute(query)
         connection.commit()
         print("add success")
         order.close()
@@ -32,7 +31,7 @@ class Admin:
         password = "1111",
         database = "moviebank")
 
-        query = f"DELETE FROM moviebank.admin WHERE name='{self.name}'"
+        query = f"DELETE FROM moviebank.admin WHERE username='{self.username}'"
 
         order = connection.cursor()
         order.execute(query)
@@ -48,7 +47,7 @@ class Admin:
         password = "1111",
         database = "moviebank")
 
-        query = f"UPDATE moviebank.admin SET password = '{newpassword}' WHERE name = '{self.name}'"
+        query = f"UPDATE moviebank.admin SET password = '{newpassword}' WHERE username = '{self.username}'"
 
         order = connection.cursor()
         order.execute(query)
@@ -147,4 +146,6 @@ class Comment:
         connection.close()
         
         
+
+
 
