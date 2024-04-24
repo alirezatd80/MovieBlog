@@ -120,4 +120,31 @@ class Movie:
         order.close()
         connection.close() 
         
+class Comment:
+    def __init__(self,name , email , phone , message):
+        self.name = name
+        self.email = email
+        self.phone = phone
+        self.message = message
+    
+    def addcomment(self):
+        connection = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="1111",
+            database="moviebank"
+        )
+         
+        query = "INSERT INTO comment (name, email, phone , message) VALUES (%s, %s, %s, %s)"
+        values = (f"{self.name}", f"{self.email}", f"{self.phone} " , f"{self.message} ")
+         
+        order = connection.cursor()
+    
+        order.execute(query,values)
+        connection.commit()
+        print("add success")
+        order.close()
+        connection.close()
+        
+        
 
