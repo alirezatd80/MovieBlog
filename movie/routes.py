@@ -12,3 +12,7 @@ def mainmovies():
 @app.route('/mavoiepage')
 def moviepage():
     return render_template("singlemoviepage.html")
+
+@app.route('/adminlog')
+def adminlog():
+    return render_template("adminpagelogin.html")
