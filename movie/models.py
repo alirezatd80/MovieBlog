@@ -56,6 +56,27 @@ class Admin:
         order.close()
         connection.close()    
 
+    def getall()->list:
+        admins = []
+        connection = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="1111",
+            database="moviebank"
+        )
+        query = f"SELECT * FROM moviebank.admin;"
+        
+        order = connection.cursor()
+    
+        order.execute(query)
+        admins = order.fetchall()
+        
+        order.close()
+        connection.close()
+        return admins
+    
+
+            
 class Movie:
     def __init__(self,name , country,time,rate,year,gener,summery,photo_url,adminid) :
         self.name = name
@@ -145,7 +166,4 @@ class Comment:
         order.close()
         connection.close()
         
-        
-
-
-
+    
