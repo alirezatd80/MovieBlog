@@ -1,4 +1,4 @@
-from flask import render_template, url_for ,request 
+from flask import render_template, url_for ,request ,redirect
 from movie import app
 from movie import models
 
@@ -21,7 +21,7 @@ def adminlog():
         password = request.form.get('pass')
         if models.Admin.is_user(username , password):
             adminlogging = models.Admin.get_admin(username)
-            render_template('adminpage/starter.html')
+            return redirect(url_for('adminpageindex'))
             
         else:
            return render_template("adminpagelogin.html")
@@ -30,5 +30,5 @@ def adminlog():
     
 @app.route('/xopnsjha' , methods = ['GET' , 'POST'])
 def adminpageindex():
-    return render_template()
+    return render_template('adminpage/starter.html')
     
