@@ -44,7 +44,7 @@
     <!-- Main Header -->
     <header class="main-header">
       <!-- Logo -->
-      <a href="starter.html" class="logo">
+      <a href="{{ url_for ('adminpageindex') }}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini">Panel</span>
         <!-- logo for regular state and mobile devices -->
@@ -120,7 +120,7 @@
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu" data-widget="tree">
           
-          <li class="active"><a href="/Template/adminpage/starter.html"><i class="fa fa-home"></i> <span>home</span></a></li>
+          <li class="active"><a href="{{ url_for ('adminpageindex') }}"><i class="fa fa-home"></i> <span>home</span></a></li>
           
           
           <li class="treeview">
@@ -130,7 +130,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="/Template/adminpage/movies.html">  Movie</a></li>
+              <li><a href="{{ url_for ('Movieadmin') }}">  Movie</a></li>
             </ul>
           </li>
 

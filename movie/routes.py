@@ -46,6 +46,21 @@ def adminpageindex():
         return render_template('adminpage/starter.html',admin = adminloggin)
     else:
         return redirect(url_for('adminlog'))
+    
+    
+@app.route('/moviepage')
+def Movieadmin():
+    adminloggin = session['admin']
+    return render_template('adminpage/movies.html',admin = adminloggin)   
+
+@app.route('/addmovie')
+def addmovieadmin():
+    adminloggin = session['admin']
+    return render_template('adminpage/addmovie.html',admin = adminloggin)    
+
+
+
+
 
 @app.route('/logout')
 def logout():
