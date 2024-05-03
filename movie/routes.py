@@ -1,6 +1,7 @@
 from flask import render_template, url_for ,request ,redirect
 from movie import app
 from movie import models
+import hashlib
 
 @app.route('/')
 def mainpage():
@@ -19,7 +20,8 @@ def adminlog():
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('pass')
-        if models.Admin.is_user(username , password):
+        hash_pass = hashlib.sha256(password.encode()).hexdigest()
+        if models.Admin.is_user(username , hash_pass):
             adminlogging = models.Admin.get_admin(username)
             return redirect(url_for('adminpageindex'))
             
