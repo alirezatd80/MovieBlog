@@ -207,4 +207,8 @@ class Comment:
         connection.close()
         
 
+admin = Admin('alireza','1111',"../static/adminpagemain/dist/img/alirezaadminphoto.jpg")
+admin2 = Admin('reza','12345678',"../static/adminpagemain/dist/img/rezaadmin.jpg")
+admin3 = Admin('ali','11111111',"../static/adminpagemain/dist/img/aliadmin.jpg")
+
 
