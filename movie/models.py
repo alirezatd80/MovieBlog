@@ -51,8 +51,8 @@ class Admin:
         user = "root",
         password = "1111",
         database = "moviebank")
-
-        query = f"UPDATE moviebank.admin SET password = '{newpassword}' WHERE username = '{self.username}'"
+        hash_newpassword = hash_password(newpassword)
+        query = f"UPDATE moviebank.admin SET password = '{hash_newpassword}' WHERE username = '{self.username}'"
 
         order = connection.cursor()
         order.execute(query)
