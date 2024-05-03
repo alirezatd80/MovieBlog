@@ -17,6 +17,7 @@ def moviepage():
 
 @app.route('/adminlog' , methods = ['GET' , 'POST'])
 def adminlog():
+    message = 'hi'
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('pass')
@@ -26,9 +27,10 @@ def adminlog():
             return redirect(url_for('adminpageindex'))
             
         else:
-           return render_template("adminpagelogin.html")
-    else:
-        return render_template("adminpagelogin.html")
+           message = 'incorrect username or password'
+           
+           return render_template("adminpagelogin.html",message=message)
+    
     
 @app.route('/xopnsjha' , methods = ['GET' , 'POST'])
 def adminpageindex():

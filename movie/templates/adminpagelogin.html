@@ -50,6 +50,11 @@
 						<input class="input100" type="password" name="pass" placeholder="Password">
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
+					<div>
+						{% if message %}
+       					 <p style="color:red ; margin: 20px; font-weight: bold; ">{{ message }}</p>
+    			        {% endif %} 
+					</div>
 
 					
 
@@ -61,6 +66,7 @@
 
 					
 				</form>
+
 			</div>
 		</div>
 	</div>
