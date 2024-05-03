@@ -43,7 +43,8 @@ def adminlog():
 def adminpageindex():
     if 'admin_is_log' in session and session['admin_is_log']:
         adminloggin = session['admin']
-        return render_template('adminpage/starter.html',admin = adminloggin)
+        comments = models.Comment.get_all_comment() 
+        return render_template('adminpage/starter.html',admin = adminloggin,comments = comments)
     else:
         return redirect(url_for('adminlog'))
     

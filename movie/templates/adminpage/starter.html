@@ -178,82 +178,16 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>ali</td>
-                      <td>alirezatd80@gmail.com
-                      </td>
-                      <td>09179737730</td>
-                      <td> hi very well </td>
-                    </tr>
-                    <tr>
-                      <td>reza</td>
-                      <td>rezaaaaa@gmail.com</td>
-                      <td>09179756569</td>
-                      <td> goood </td>
-                    </tr>
-                    <tr>
-                      <td>messi</td>
-                      <td>mosad@gmail.com
-                      </td>
-                      <td>0191919191</td>
-                      <td> rrqqpp </td>
-                    </tr>
-                    <tr>
-                      <td>mohsen</td>
-                      <td>mohsernsd@gmail.com
-                      </td>
-                      <td>01191557589</td>
-                      <td> hi ride well </td>
-                    </tr>
-                    <tr>
-                      <td>jafr</td>
-                      <td>j@gmafarkermoniail.com
-                      </td>
-                      <td>1212121212</td>
-                      <td> hala ke chi  </td>
-                    </tr>
-                    <tr>
-                      <td>mohammad</td>
-                      <td>mmadsss@gmail.com
-                      </td>
-                      <td>116598</td>
-                      <td> khoooo </td>
-                    </tr>
-                    <tr>
-                      <td>masomeh</td>
-                      <td>mesial@gmail.com
-                      </td>
-                      <td>123421212</td>
-                      <td> bahbah </td>
-                    </tr>
-                    <tr>
-                      <td>sadegh</td>
-                      <td>sodogh@gmail.com
-                      </td>
-                      <td>2121s121</td>
-                      <td> hake </td>
-                    </tr>
-                    <tr>
-                      <td>samaneh</td>
-                      <td>samanis@gmail.com
-                      </td>
-                      <td>11111111111111</td>
-                      <td> bah bah </td>
-                    </tr>
-                    <tr>
-                      <td>amooo</td>
-                      <td>amooo@gmail.com
-                      </td>
-                      <td>asa</td>
-                      <td> kokami </td>
-                    </tr>
-                    <tr>
-                      <td>janopic</td>
-                      <td>janopic@gmail.com
-                      </td>
-                      <td>097586957</td>
-                      <td> benazam </td>
-                    </tr>
+                    
+                    {% for comment in comments %}
+                      <tr>
+                      <td>{{ comment[1] }}</td>
+                      <td>{{ comment[2] }}</td>
+                      <td>{{ comment[3] }}</td>
+                      <td>{{ comment[4] }}</td>
+                      </tr>
+                    {% endfor %}
+                    
                     
                   </tfoot>
                 </table>

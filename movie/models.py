@@ -205,10 +205,32 @@ class Comment:
         print("add success")
         order.close()
         connection.close()
+    def get_all_comment()->list:
+        comments = []
+        connection = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="1111",
+            database="moviebank"
+        )
+        query = f"SELECT * FROM moviebank.comment;"
+        
+        order = connection.cursor()
+    
+        order.execute(query)
+        comments = order.fetchall()
+        
+        order.close()
+        connection.close()
+        return comments
+        
         
 
 admin = Admin('alireza','1111',"../static/adminpagemain/dist/img/alirezaadminphoto.jpg")
 admin2 = Admin('reza','12345678',"../static/adminpagemain/dist/img/rezaadmin.jpg")
 admin3 = Admin('ali','11111111',"../static/adminpagemain/dist/img/aliadmin.jpg")
+
+com = Comment('dssad','asdsad@gmail.com','55555555','adsf babadssdafsadfdsfdsfadsfy')
+
 
 
