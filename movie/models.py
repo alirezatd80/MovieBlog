@@ -1,10 +1,15 @@
 import mysql.connector
+import hashlib
 
+def hash_password(password):
+    hashed_password = hashlib.sha256(password.encode()).hexdigest()
+    return hashed_password
+    
 
 class Admin:
     def __init__(self,username,password,photo_url) :
         self.username = username
-        self.password = password
+        self.password = hash_password(password)
         self.photo_url = photo_url
     
     def add(self ):
@@ -201,4 +206,5 @@ class Comment:
         order.close()
         connection.close()
         
+
 
