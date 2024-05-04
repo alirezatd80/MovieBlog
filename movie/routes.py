@@ -9,7 +9,6 @@ import hashlib
 @app.route('/',methods = ['POST' , 'GET'])
 def mainpage():
     numberAdmin = models.Admin.NumberAdmin()
-    sendmessage()
     return render_template("app-landing.html",numberAdmin = numberAdmin)    
        
         
@@ -24,6 +23,7 @@ def sendmessage():
             message = request.form.get('message')
             mess = models.Comment(name,email,phone,message)
             mess.addcomment()
+    return redirect(url_for('mainpage'))
             
  
 
