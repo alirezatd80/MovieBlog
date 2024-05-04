@@ -170,40 +170,46 @@
                     <tr>
                       <th>Name</th>
                       <th>Contry</th>
-                      <th>Year</th>
                       <th>Time</th>
-                      <th>Gener</th>
                       <th>imdb</th>
-                      <th>photo_url</th>
+                      <th>Year</th>
+                      <th>Gener</th>
+                      <th>summery</th>
                       <th>operation</th>
 
 
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>thor</td>
-                      <td>USA
-                      </td>
-                      <td>2022</td>
-                      <td> 120min </td>
-                      <td> action,fantesy </td>
-                      <td> 2.3 </td>
-                      <td>./saas/asas.jpg</td>
-                      <td> 
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-warning"><i class="fa fa-edit"></i></button>
-                          <button type="button" class="btn btn-danger"><i class="fa fa-close"></i></button>
-                          
-                        </div> 
-                      </td>
+                    
+                      {% for movie in movies %}
+                      <tr>
+                        <td>{{movie[1]}}</td>
+                        <td>{{movie[2]}}
+                        </td>
+                        <td>{{movie[3]}}</td>
+                        <td> {{movie[4]}} </td>
+                        <td> {{movie[5]}} </td>
+                        <td> {{movie[6]}} </td>
+                        <td>{{movie[7]}}</td>
+                        <td> 
+                          <div class="btn-group">
+                            <a href="{{ url_for ('mainpage') }}"> <button type="button" class="btn btn-warning"><i class="fa fa-edit"></i></button></a>
+                            <a href="{{ url_for ('mainpage') }}"> <button type="button" class="btn btn-danger"><i class="fa fa-close"></i></button></a>
+                           
+                           
+                            
+                          </div> 
+                        </td>
+                      </tr>
+                    {% endfor %}
 
 
-                    </tr>
+                    
                    
                  
                 </table>
-                <a href="{{ url_for ('addmovieadmin') }}"><button type="button" class="btn btn-success"><i class="fa fa-plus-square"></i></button></a>
+                <a href="{{ url_for ('addmoviepageadmin') }}"><button type="button" class="btn btn-success"><i class="fa fa-plus-square"></i></button></a>
               </div>
               <!-- /.box-body -->
             </div>
