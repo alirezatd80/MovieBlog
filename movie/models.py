@@ -113,6 +113,9 @@ class Admin:
             
         else:
             return False
+    def NumberAdmin()->int:
+        admins = Admin.getall()
+        return len(admins)
     
         
 

@@ -8,8 +8,9 @@ import hashlib
     
 @app.route('/',methods = ['POST' , 'GET'])
 def mainpage():
+    numberAdmin = models.Admin.NumberAdmin()
     sendmessage()
-    return render_template("app-landing.html")    
+    return render_template("app-landing.html",numberAdmin = numberAdmin)    
        
         
         
