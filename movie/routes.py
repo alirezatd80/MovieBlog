@@ -9,7 +9,8 @@ import hashlib
 @app.route('/',methods = ['POST' , 'GET'])
 def mainpage():
     numberAdmin = models.Admin.NumberAdmin()
-    return render_template("app-landing.html",numberAdmin = numberAdmin)    
+    numberMovie = len(models.Movie.get_all_movies())
+    return render_template("app-landing.html",numberAdmin = numberAdmin,numberMovie = numberMovie)    
        
         
         
