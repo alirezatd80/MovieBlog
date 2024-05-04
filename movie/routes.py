@@ -29,7 +29,8 @@ def sendmessage():
 
 @app.route('/Movies')
 def mainmovies():
-    return render_template("movies.html")
+    movies= models.Movie.get_all_movies()
+    return render_template("movies.html",movies = movies)
 
 @app.route('/mavoiepage')
 def moviepage():
