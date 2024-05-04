@@ -69,18 +69,32 @@ def adminpageindex():
         return redirect(url_for('adminlog'))
     
     
-@app.route('/moviepage')
+@app.route('/moviepage',methods = ['GET' , 'POST'])
 def Movieadmin():
     adminloggin = session['admin']
     return render_template('adminpage/movies.html',admin = adminloggin)   
 
-@app.route('/addmovie')
+@app.route('/addmovie',methods = ['GET' , 'POST'])
 def addmovieadmin():
     adminloggin = session['admin']
-    return render_template('adminpage/addmovie.html',admin = adminloggin)    
+    name = request.form.get('moviename')
+    country = request.form.get('contry')
+    time=request.form.get('time')
+    year= request.form.get('year')
+    gener = request.form.get('gener')
+    imdb = request.form.get('imdb')
+    summery = request.form.get('summery')
+    picture = request.form.get('picture')
+    url = f"../static/img/movies/{picture}"
+    movie = models.Movie(name,country,time,imdb,year,gener,summery,url,adminloggin[0])
+    movie.addmovie()
+    return redirect(url_for('Movieadmin'))
+        
 
-
-
+@app.route('/addmoviepage',methods = ['GET' , 'POST'])
+def addmoviepageadmin():
+    adminloggin = session['admin']
+    return render_template('adminpage/addmovie.html',admin = adminloggin)
 
 
 @app.route('/logout')

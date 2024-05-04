@@ -156,44 +156,48 @@
         </h1>
         
       </section>
-      <form class="container  was-validated">
+      <form class="container  was-validated" action="{{  url_for ('addmovieadmin') }}" method="post">
         
         <div style="margin-top: 20px; margin-bottom: 20px;">
             <label for="validationTextarea" class="form-label">Name</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="enter Name">
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="enter Name" name="moviename">
           </div>
       
           <div style="margin-top: 20px; margin-bottom: 20px;">
             <label for="validationTextarea" class="form-label">Contry </label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="enter contry ">
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="enter contry "  name="contry">
+          </div>
+          <div style="margin-top: 20px; margin-bottom: 20px;">
+            <label for="validationTextarea" class="form-label">Time </label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="enter time "  name="time">
           </div>
           <div style="margin-top: 20px; margin-bottom: 20px;">
             <label for="validationTextarea" class="form-label">Year </label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="enter year ">
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="enter year " name="year">
           </div>
           <div style="margin-top: 20px; margin-bottom: 20px;">
             <label for="validationTextarea" class="form-label">Gener </label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="enter Geners ">
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="enter Geners " name="gener">
           </div>
           <div style="margin-top: 20px; margin-bottom: 20px;">
             <label for="validationTextarea" class="form-label">IMDB </label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="enter IMDB ">
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="enter IMDB " name="imdb">
           </div>
           <div style="margin-top: 20px; margin-bottom: 20px;">
             <label for="validationTextarea" class="form-label">Summery </label>
-            <textarea class="form-control" id="exampleFormControlInput1" rows="4" cols="50" placeholder="enter summery ...">
+            <textarea class="form-control" id="exampleFormControlInput1" rows="4" cols="50" placeholder="enter summery ..." name="summery"> 
                 
             </textarea>
           </div>
        
         <div style="margin-top: 20px; margin-bottom: 20px;">
             <label for="validationTextarea">Pitcure</label>
-          <input type="file" class="form-control" aria-label="file example" required>
+          <input type="file" class="form-control" aria-label="file example" name="picture" required >
           
         </div>
       
         <div class="mb-3">
-          <button class="btn btn-success" type="submit" >Submit form</button>
+          <button class="btn btn-success" type="submit" >Insert Movie</button>
         </div>
       </form>
 

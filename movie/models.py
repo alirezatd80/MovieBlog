@@ -121,7 +121,7 @@ class Admin:
 
             
 class Movie:
-    def __init__(self,name , country,time,rate,year,gener,summery,photo_url,adminid) :
+    def __init__(self,name , country,time:0,rate,year,gener,summery,photo_url,adminid) :
         self.name = name
         self.country = country
         self.time = time
@@ -182,6 +182,26 @@ class Movie:
         print("edit success")
         order.close()
         connection.close() 
+        
+    
+    def get_all_movies()->list:
+        movies = []
+        connection = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="1111",
+            database="moviebank"
+        )
+        query = f"SELECT * FROM moviebank.movies;"
+        
+        order = connection.cursor()
+    
+        order.execute(query)
+        movies = order.fetchall()
+        
+        order.close()
+        connection.close()
+        return movies
         
 class Comment:
     def __init__(self,name , email , phone , message):
