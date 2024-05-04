@@ -3,9 +3,28 @@ from movie import app
 from movie import models
 import hashlib
 
-@app.route('/')
+
+    
+    
+@app.route('/',methods = ['POST' , 'GET'])
 def mainpage():
-    return render_template("app-landing.html")
+    sendmessage()
+    return render_template("app-landing.html")    
+       
+        
+        
+  
+@app.route('/sendmessage',methods = ['POST' , 'GET'])
+def sendmessage():
+    if request.method == 'POST':
+            name = request.form.get('name')
+            email = request.form.get('email')
+            phone = request.form.get('phone_number')
+            message = request.form.get('message')
+            mess = models.Comment(name,email,phone,message)
+            mess.addcomment()
+            
+ 
 
 @app.route('/Movies')
 def mainmovies():
@@ -67,4 +86,7 @@ def addmovieadmin():
 def logout():
     session.pop('admin_is_log' , None)
     return redirect(url_for('mainpage'))
+
+
+    
     
