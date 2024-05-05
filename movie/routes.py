@@ -120,6 +120,18 @@ def deletemovie():
     models.Movie.delmoviebyname(movieName)
     return redirect(url_for('Movieadmin'))
     
+@app.route('/editmovie' ,methods=['GET'] )  
+def editMovie():
+    adminloggin = session['admin']
+    moviename = request.args.get('movname') 
+    Contry = request.args.get('country') 
+    Time = request.args.get('time') 
+    imdb = request.args.get('imdb') 
+    Year = request.args.get('year') 
+    Gener = request.args.get('Gener') 
+    summery = request.args.get('summery') 
+    photourl= request.args.get('photourl') 
+    return render_template('editpage.html',name = moviename ,Contry=Contry,Time=Time,imdb=imdb,Year=Year,Gener=Gener,summery=summery,photourl=photourl,admin = adminloggin )
     
     
     
