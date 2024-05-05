@@ -238,6 +238,24 @@ class Movie:
         order.close()
         connection.close()
         return movie
+    def delmoviebyname(name):
+        movieselect = Movie.GetMoviesbyname(name)
+        movie = movieselect[0]
+        connection = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="1111",
+            database="moviebank"
+        )
+        query = f"DELETE FROM `moviebank`.`movies` WHERE (`id` = {movie[0]}) and (`adminid` = {movie[9]});"
+        
+        order = connection.cursor()
+        order.execute(query)
+        
+        connection.commit()
+        order.close()
+        connection.close()
+        
         
         
 class Comment:

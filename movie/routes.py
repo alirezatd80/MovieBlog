@@ -113,5 +113,14 @@ def movieday():
     movie  = models.Movie.GetMoviesbyname(moviename)
     session['movieday'] = movie
     return redirect(url_for('mainpage'))
+
+@app.route('/deletemovie',methods=['GET'])
+def deletemovie():
+    movieName = request.args.get('movname')
+    models.Movie.delmoviebyname(movieName)
+    return redirect(url_for('Movieadmin'))
+    
+    
+    
     
     
