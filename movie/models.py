@@ -220,6 +220,24 @@ class Movie:
         order.close()
         connection.close()
         return movies
+    def GetMoviesbyname(name):
+        
+        connection = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="1111",
+            database="moviebank"
+        )
+        query = f"SELECT * FROM moviebank.movies where name = '{name}';"
+        
+        order = connection.cursor()
+    
+        order.execute(query)
+        movie = order.fetchall()
+        
+        order.close()
+        connection.close()
+        return movie
         
         
 class Comment:

@@ -4,13 +4,15 @@ from movie import models
 import hashlib
 
 
-    
+
     
 @app.route('/',methods = ['POST' , 'GET'])
 def mainpage():
     numberAdmin = models.Admin.NumberAdmin()
     numberMovie = len(models.Movie.get_all_movies())
-    return render_template("app-landing.html",numberAdmin = numberAdmin,numberMovie = numberMovie)    
+    mov = session['movieday']
+    movieday = mov[0]
+    return render_template("app-landing.html",numberAdmin = numberAdmin,numberMovie = numberMovie,movieday=movieday)    
        
         
         
@@ -105,6 +107,11 @@ def logout():
     session.pop('admin_is_log' , None)
     return redirect(url_for('mainpage'))
 
-
+@app.route('/movieday' , methods = ['POST','GET'])
+def movieday():
+    moviename = request.form.get('moviename')
+    movie  = models.Movie.GetMoviesbyname(moviename)
+    session['movieday'] = movie
+    return redirect(url_for('mainpage'))
     
     
