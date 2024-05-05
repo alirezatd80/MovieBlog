@@ -74,7 +74,7 @@ def adminpageindex():
 @app.route('/moviepage',methods = ['GET' , 'POST'])
 def Movieadmin():
     adminloggin = session['admin']
-    movies = models.Movie.get_all_movies()
+    movies = models.Movie.GetMoviesbyID(adminloggin[0])
     return render_template('adminpage/movies.html',admin = adminloggin,movies = movies)   
 
 @app.route('/addmovie',methods = ['GET' , 'POST'])

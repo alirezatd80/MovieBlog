@@ -202,6 +202,25 @@ class Movie:
         order.close()
         connection.close()
         return movies
+    def GetMoviesbyID(adminid)-> list:
+        movies = []
+        connection = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="1111",
+            database="moviebank"
+        )
+        query = f"SELECT * FROM moviebank.movies where adminid ={adminid};"
+        
+        order = connection.cursor()
+    
+        order.execute(query)
+        movies = order.fetchall()
+        
+        order.close()
+        connection.close()
+        return movies
+        
         
 class Comment:
     def __init__(self,name , email , phone , message):
