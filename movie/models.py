@@ -310,5 +310,9 @@ admin3 = Admin('ali','11111111',"../static/adminpagemain/dist/img/aliadmin.jpg")
 
 com = Comment('dssad','asdsad@gmail.com','55555555','adsf babadssdafsadfdsfdsfadsfy')
 
+# movie = Movie.GetMoviesbyname('thor')
+# mp = movie[0]
+# moi = Movie(mp[1],mp[2],mp[3],mp[4],mp[5],mp[6],mp[7],mp[8],mp[9])
+# moi.delmovie()
 
 

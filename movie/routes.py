@@ -120,7 +120,7 @@ def deletemovie():
     models.Movie.delmoviebyname(movieName)
     return redirect(url_for('Movieadmin'))
     
-@app.route('/editmovie' ,methods=['GET'] )  
+@app.route('/editmovie' ,methods=['POST','GET'] )  
 def editMovie():
     adminloggin = session['admin']
     moviename = request.args.get('movname') 
@@ -131,7 +131,27 @@ def editMovie():
     Gener = request.args.get('Gener') 
     summery = request.args.get('summery') 
     photourl= request.args.get('photourl') 
-    return render_template('editpage.html',name = moviename ,Contry=Contry,Time=Time,imdb=imdb,Year=Year,Gener=Gener,summery=summery,photourl=photourl,admin = adminloggin )
+    movieedit = models.Movie.GetMoviesbyname(moviename)
+    session['movieedit'] = movieedit[0]
+    return render_template('adminpage/editpage.html',name = moviename ,Contry=Contry,Time=Time,imdb=imdb,Year=Year,Gener=Gener,summery=summery,photourl=photourl,admin = adminloggin )
+    
+    
+@app.route('/submitedit' , methods=['POST','GET'] )  
+def  submitedit():
+    
+    moviename = request.form.get('moviename') 
+    Contry = request.form.get('contry') 
+    Time = request.form.get('time') 
+    year = request.form.get('year') 
+    gener = request.form.get('gener') 
+    imdb = request.form.get('imdb') 
+    summery = request.form.get('summery') 
+    photourl= request.form.get('picture')
+    url = f"../static/img/movies/{photourl}"
+    movieedit = session['movieedit']
+    mov = models.Movie(movieedit[1],movieedit[2],movieedit[3],movieedit[4],movieedit[5],movieedit[6],movieedit[7],movieedit[8],movieedit[9])
+    mov.editemovie(moviename,Contry,Time,year,gener,imdb,summery,url)
+    return redirect(url_for('Movieadmin'))
     
     
     

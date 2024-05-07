@@ -151,53 +151,53 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          add  Page 
+          edit  Page 
           <small>description</small>
         </h1>
         
       </section>
-      <form class="container  was-validated" action="{{  url_for ('addmovieadmin') }}" method="post">
+      <form class="container  was-validated" action="{{  url_for ('submitedit') }}" method="post">
         
         <div style="margin-top: 20px; margin-bottom: 20px;">
             <label for="validationTextarea" class="form-label">Name</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="enter Name" name="moviename" value="hi">
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="enter Name" name="moviename" value="{{name}}">
           </div>
       
           <div style="margin-top: 20px; margin-bottom: 20px;">
             <label for="validationTextarea" class="form-label">Contry </label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="enter contry "  name="contry">
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="enter contry "  name="contry" value="{{Contry}}">
           </div>
           <div style="margin-top: 20px; margin-bottom: 20px;">
             <label for="validationTextarea" class="form-label">Time </label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="enter time "  name="time">
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="enter time "  name="time" value="{{Time}}">
           </div>
           <div style="margin-top: 20px; margin-bottom: 20px;">
             <label for="validationTextarea" class="form-label">Year </label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="enter year " name="year">
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="enter year " name="year" value="{{imdb}}">
           </div>
           <div style="margin-top: 20px; margin-bottom: 20px;">
             <label for="validationTextarea" class="form-label">Gener </label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="enter Geners " name="gener">
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="enter Geners " name="gener" value="{{Year}}">
           </div>
           <div style="margin-top: 20px; margin-bottom: 20px;">
             <label for="validationTextarea" class="form-label">IMDB </label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="enter IMDB " name="imdb">
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="enter IMDB " name="imdb" value="{{Gener}}">
           </div>
           <div style="margin-top: 20px; margin-bottom: 20px;">
             <label for="validationTextarea" class="form-label">Summery </label>
-            <textarea class="form-control" id="exampleFormControlInput1" rows="4" cols="50" placeholder="enter summery ..." name="summery"> 
-                
+            <textarea class="form-control" id="exampleFormControlInput1" rows="4" cols="50" placeholder="enter summery ..." name="summery" > 
+              {{summery}}
             </textarea>
           </div>
        
         <div style="margin-top: 20px; margin-bottom: 20px;">
             <label for="validationTextarea">Pitcure</label>
-          <input type="file" class="form-control" aria-label="file example" name="picture" required >
+          <input type="file" class="form-control" aria-label="file example" name="picture" value="photourl"  required  >
           
         </div>
       
         <div class="mb-3">
-          <button class="btn btn-success" type="submit" >Insert Movie</button>
+          <button class="btn btn-success" type="submit" >Edit Movie</button>
         </div>
       </form>
 
