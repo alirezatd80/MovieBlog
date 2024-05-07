@@ -154,5 +154,8 @@ def  submitedit():
     return redirect(url_for('Movieadmin'))
     
     
-    
-    
+@app.route('/moviesbytag/<tag>')   
+def moviesbytag(tag):
+    adminloggin = session['admin']
+    movies = models.Movie.GetMovieByTag(tag)
+    return render_template("movies.html",movies = movies)  

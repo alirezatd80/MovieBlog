@@ -257,6 +257,16 @@ class Movie:
         connection.close()
         
         
+    def GetMovieByTag(tag):
+        movies = Movie.get_all_movies()
+        listresult = []
+        for i in movies:
+            if tag in i[6]:
+                listresult.append(i)
+        return listresult
+        
+            
+        
         
 class Comment:
     def __init__(self,name , email , phone , message):
@@ -308,11 +318,8 @@ admin = Admin('alireza','1111',"../static/adminpagemain/dist/img/alirezaadminpho
 admin2 = Admin('reza','12345678',"../static/adminpagemain/dist/img/rezaadmin.jpg")
 admin3 = Admin('ali','11111111',"../static/adminpagemain/dist/img/aliadmin.jpg")
 
-com = Comment('dssad','asdsad@gmail.com','55555555','adsf babadssdafsadfdsfdsfadsfy')
 
-# movie = Movie.GetMoviesbyname('thor')
-# mp = movie[0]
-# moi = Movie(mp[1],mp[2],mp[3],mp[4],mp[5],mp[6],mp[7],mp[8],mp[9])
-# moi.delmovie()
+
+
 
 
