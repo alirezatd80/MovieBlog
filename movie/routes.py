@@ -35,9 +35,7 @@ def mainmovies():
     movies= models.Movie.get_all_movies()
     return render_template("movies.html",movies = movies)
 
-@app.route('/mavoiepage')
-def moviepage():
-    return render_template("singlemoviepage.html")
+
 
 @app.route('/adminlog' , methods = ['GET' , 'POST'])
 def adminlog():
@@ -159,3 +157,19 @@ def moviesbytag(tag):
     adminloggin = session['admin']
     movies = models.Movie.GetMovieByTag(tag)
     return render_template("movies.html",movies = movies)  
+
+@app.route('/moviepage/<moviename>')
+def moviepage(moviename):
+    mov = models.Movie.GetMoviesbyname(moviename)
+    movie = mov[0]
+    photo = movie[8]
+    name = movie[1]
+    rate = movie[4]
+    time = movie[3]
+    contry = movie[2]
+    gener = movie[6]
+    year = movie[5]
+    summery = movie[7]
+    return render_template("singlemoviepage.html",photo = photo , name = name,rate=rate,time=time,contry=contry,gener=gener,year=year,summery=summery)
+    
+    
