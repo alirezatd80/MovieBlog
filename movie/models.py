@@ -317,6 +317,11 @@ class Comment:
 admin = Admin('alireza','1111',"../static/adminpagemain/dist/img/alirezaadminphoto.jpg")
 admin2 = Admin('reza','12345678',"../static/adminpagemain/dist/img/rezaadmin.jpg")
 admin3 = Admin('ali','11111111',"../static/adminpagemain/dist/img/aliadmin.jpg")
+admin4 = Admin('mamad','1111',"../static/adminpagemain/dist/img/user2-160x160.jpg")
+admin5 = Admin('kazem','1111',"../static/adminpagemain/dist/img/user2-160x160.jpg")
+
+
+
 
 
 
