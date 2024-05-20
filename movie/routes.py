@@ -1,7 +1,7 @@
 from flask import render_template, url_for ,request ,redirect,session
 from movie import app
 from movie import models
-from argon2 import PasswordHasher
+import time
 
 
 
@@ -29,7 +29,14 @@ def sendmessage():
             mess.addcomment()
     return redirect(url_for('mainpage'))
             
- 
+@app.route('/banpage')
+def banpage():
+    return render_template('banpage.html')
+    
+@app.route('/timewait')    
+def timewait():
+    time.sleep(10)
+    return redirect(url_for('adminlog'))
 
 @app.route('/Movies')
 def mainmovies():
@@ -40,26 +47,42 @@ def mainmovies():
 
 @app.route('/adminlog' , methods = ['GET' , 'POST'])
 def adminlog():
+    if 'attempts' not in session:
+        session['attempts'] = 0
+        
+    if session['attempts'] >= 5:
+        session['attempts'] = 0
+        return redirect(url_for('banpage'))
+    
     if 'admin_is_log' in session and session['admin_is_log']:
         return redirect(url_for('adminpageindex'))
     else:
-        message = 'hi'
-        if request.method == 'POST':
-            username = request.form.get('username')
-            password = request.form.get('pass')
-            givinformation = models.Admin.get_admin(username)
-            if models.Admin.is_user(username , password):
+        if True:
+                message = 'hi'
+                if request.method == 'POST':
+                    username = request.form.get('username')
+                    password = request.form.get('pass')
+                    givinformation = models.Admin.get_admin(username)
+                    if models.Admin.is_user(username , password):
 
-                session['admin'] = givinformation[0]
-                session['admin_is_log'] = True
-                return redirect(url_for('adminpageindex'))
+                        session['admin'] = givinformation[0]
+                        session['admin_is_log'] = True
+                        session['attempts'] = 0
+                        
+                        return redirect(url_for('adminpageindex'))
 
-            else:
-               message = 'incorrect username or password'
+                    else:
+                        
+                        message = f'incorrect password or username'
+                        session['attempts'] += 1
+                        
 
-               return render_template("adminpagelogin.html",message=message)
-        else:
-            return render_template("adminpagelogin.html")
+                    return render_template("adminpagelogin.html",message=message)
+                else:
+                    return render_template("adminpagelogin.html")
+        
+            
+            
     
 @app.route('/adminpageindex' , methods = ['GET' , 'POST'])
 def adminpageindex():

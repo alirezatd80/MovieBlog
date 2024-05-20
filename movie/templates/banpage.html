@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAIT PAGE</title>
+    <style>
+        #popup {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: white;
+            border: 2px solid #000;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        #overlay {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+<h1>You Are Ban for many try</h1>
+<a href="{{ url_for ('timewait') }}"><button id="showPopupBtn">Show Popup</button></a>
+
+<div id="overlay"></div>
+<div id="popup">
+    <p>BanTime: <span id="countdown">10</span> seconds</p>
+</div>
+
+<script>
+    document.getElementById('showPopupBtn').addEventListener('click', function() {
+        var countdownElement = document.getElementById('countdown');
+        var popup = document.getElementById('popup');
+        var overlay = document.getElementById('overlay');
+        var countdown = 10;
+
+        popup.style.display = 'block';
+        overlay.style.display = 'block';
+
+        countdownElement.textContent = countdown;
+
+        var timer = setInterval(function() {
+            countdown--;
+            countdownElement.textContent = countdown;
+
+            if (countdown <= 0) {
+                clearInterval(timer);
+                popup.style.display = 'none';
+                overlay.style.display = 'none';
+            }
+        }, 1000);
+    });
+</script>
+
+</body>
+</html>
