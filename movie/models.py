@@ -1,9 +1,13 @@
 import mysql.connector
-import hashlib
+
+from argon2 import PasswordHasher
+
 
 def hash_password(password):
-    hashed_password = hashlib.sha3_256(password.encode()).hexdigest()
+    ph = PasswordHasher()
+    hashed_password = ph.hash(password)
     return hashed_password
+
     
 
 class Admin:
@@ -99,6 +103,7 @@ class Admin:
         return admin
     
     def is_user(username , password) -> bool: 
+        ph = PasswordHasher()
         usernames = [] 
         adminlist = Admin.getall()
         for i in adminlist:
@@ -106,7 +111,15 @@ class Admin:
         if username in usernames:
             test = Admin.get_admin(username)
             user = test[0]
-            if password == user[2]:
+            valid = False
+            print(user[2])
+            print(password)
+            try:
+               valid = ph.verify(user[2],password)
+            except :
+                valid = False
+                
+            if valid:
                 return True
             else:
                 return False
@@ -317,8 +330,8 @@ class Comment:
 admin = Admin('alireza','1111',"../static/adminpagemain/dist/img/alirezaadminphoto.jpg")
 admin2 = Admin('reza','12345678',"../static/adminpagemain/dist/img/rezaadmin.jpg")
 admin3 = Admin('ali','11111111',"../static/adminpagemain/dist/img/aliadmin.jpg")
-admin4 = Admin('mamad','1111',"../static/adminpagemain/dist/img/user2-160x160.jpg")
 admin5 = Admin('kazem','1111',"../static/adminpagemain/dist/img/user2-160x160.jpg")
+
 
 
 

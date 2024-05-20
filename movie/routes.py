@@ -1,7 +1,8 @@
 from flask import render_template, url_for ,request ,redirect,session
 from movie import app
 from movie import models
-import hashlib
+from argon2 import PasswordHasher
+
 
 
 
@@ -46,9 +47,8 @@ def adminlog():
         if request.method == 'POST':
             username = request.form.get('username')
             password = request.form.get('pass')
-            hash_pass = hashlib.sha256(password.encode()).hexdigest()
             givinformation = models.Admin.get_admin(username)
-            if models.Admin.is_user(username , hash_pass):
+            if models.Admin.is_user(username , password):
 
                 session['admin'] = givinformation[0]
                 session['admin_is_log'] = True
