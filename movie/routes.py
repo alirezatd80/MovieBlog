@@ -73,7 +73,7 @@ def adminlog():
 
                     else:
                         
-                        message = f'incorrect password or username'
+                        message = f'PASSWORD OR USERNAME IS INCORRECT'
                         session['attempts'] += 1
                         
 
