@@ -2,7 +2,7 @@ import mysql.connector
 import hashlib
 
 def hash_password(password):
-    hashed_password = hashlib.sha256(password.encode()).hexdigest()
+    hashed_password = hashlib.sha3_256(password.encode()).hexdigest()
     return hashed_password
     
 
