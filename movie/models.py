@@ -8,13 +8,40 @@ def hash_password(password):
     hashed_password = ph.hash(password)
     return hashed_password
 
+
+def checkpassword(password):
+    
+    uppercase = list(filter(lambda x : x.isupper() , password))
+    lenght = len(password)
+    def issymbol(input_string):
+        special_characters = ['?', '@', '!', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+', '=', '_', '`', '~', '[', ']', '{', '}', '|', '\\', '/', ':', ';', '"', "'", '<', '>', ',', '.']
+        for char in input_string:
+            if char in special_characters:
+                return True
+        return False
+    symbol = issymbol(password)
+    if lenght < 8 :
+        return 'Please enter a longer password',False
+    elif len(uppercase) == 0 :
+        return 'Please enter at least one uppercase character. ',False
+    elif symbol == False:
+        return "Please enter at least one symbol character.",False
+    else:
+        return '',True
+
+
+
     
 
 class Admin:
     def __init__(self,username,password,photo_url) :
         self.username = username
-        self.password = hash_password(password)
+        if checkpassword(password)[1]:
+            self.password = hash_password(password)
+        else:
+            print(checkpassword(password)[0])
         self.photo_url = photo_url
+        
     
     def add(self ):
         connection = mysql.connector.connect(
@@ -55,7 +82,11 @@ class Admin:
         user = "root",
         password = "1111",
         database = "moviebank")
-        hash_newpassword = hash_password(newpassword)
+        if checkpassword(newpassword)[1]:
+            hash_newpassword = hash_password(newpassword)
+        else:
+            print(checkpassword(newpassword)[0])
+        
         query = f"UPDATE moviebank.admin SET password = '{hash_newpassword}' WHERE username = '{self.username}'"
 
         order = connection.cursor()
@@ -327,10 +358,12 @@ class Comment:
         
         
 
-admin = Admin('alireza','1111',"../static/adminpagemain/dist/img/alirezaadminphoto.jpg")
-admin2 = Admin('reza','12345678',"../static/adminpagemain/dist/img/rezaadmin.jpg")
-admin3 = Admin('ali','11111111',"../static/adminpagemain/dist/img/aliadmin.jpg")
-admin5 = Admin('kazem','1111',"../static/adminpagemain/dist/img/user2-160x160.jpg")
+admin = Admin('alireza','13488083Alo?',"../static/adminpagemain/dist/img/alirezaadminphoto.jpg")
+admin2 = Admin('reza','123456789A?',"../static/adminpagemain/dist/img/rezaadmin.jpg")
+admin3 = Admin('ali','11111111A?',"../static/adminpagemain/dist/img/aliadmin.jpg")
+admin5 = Admin('kazem','12345678A?',"../static/adminpagemain/dist/img/user2-160x160.jpg")
+
+
 
 
 
