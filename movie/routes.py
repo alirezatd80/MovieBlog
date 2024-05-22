@@ -82,7 +82,10 @@ def adminlog():
                 else:
                     return render_template("adminpagelogin.html")
         
-            
+@app.route('/verifycode',methods = ['GET' , 'POST'])  
+def verifycode():
+    pass
+             
             
     
 @app.route('/adminpageindex' , methods = ['GET' , 'POST'])
