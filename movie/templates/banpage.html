@@ -76,7 +76,7 @@
         document.getElementById('loginButton').addEventListener('click', function() {
             var countdownElement = document.getElementById('countdown');
             var loginButton = document.getElementById('loginButton');
-            var timeLeft = 10;
+            var timeLeft = 60;
         
             // Disable the button
             loginButton.disabled = true;
@@ -90,7 +90,7 @@
                     // Optional: Redirect to the login page
                     window.location.href = "{{ url_for('timewait') }}";
                 } else {
-                    countdownElement.innerHTML = timeLeft + ' seconds remaining';
+                    countdownElement.innerHTML = timeLeft + ' seconds wait';
                 }
                 timeLeft -= 1;
             }, 1000);
