@@ -69,7 +69,7 @@ def adminlog():
                         session['admin_is_log'] = True
                         session['attempts'] = 0
                         
-                        return redirect(url_for('verifycode'))
+                        return redirect(url_for('sendcode'))
 
                     else:
                         
@@ -84,6 +84,10 @@ def adminlog():
 @app.route('/verifycode',methods = ['GET' , 'POST'])  
 def verifycode():
     return render_template('verifycode.html')
+
+@app.route('/sendcode' ,methods = ['GET' , 'POST'])
+def sendcode():
+    return render_template('emailsend.html')
 
 def sendemail():
     pass
