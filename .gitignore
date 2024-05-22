@@ -1,3 +1,4 @@
 
 movie/__pycache__/__init__.cpython-312.pyc
 movie/__pycache__/routes.cpython-312.pyc
+movie/config.py
