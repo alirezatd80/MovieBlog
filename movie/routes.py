@@ -14,10 +14,7 @@ def mainpage():
     mov = session['movieday']
     movieday = mov[0]
     return render_template("app-landing.html",numberAdmin = numberAdmin,numberMovie = numberMovie,movieday=movieday)    
-       
-        
-        
-  
+     
 @app.route('/sendmessage',methods = ['POST' , 'GET'])
 def sendmessage():
     if request.method == 'POST':
@@ -28,7 +25,16 @@ def sendmessage():
             mess = models.Comment(name,email,phone,message)
             mess.addcomment()
     return redirect(url_for('mainpage'))
-            
+      
+@app.route('/Movies')
+def mainmovies():
+    movies= models.Movie.get_all_movies()
+    return render_template("movies.html",movies = movies)
+
+
+
+
+
 @app.route('/banpage')
 def banpage():
     return render_template('banpage.html')
@@ -38,13 +44,6 @@ def timewait():
     time.sleep(60)
     session['attempts'] = 0
     return redirect(url_for('adminlog'))
-
-@app.route('/Movies')
-def mainmovies():
-    movies= models.Movie.get_all_movies()
-    return render_template("movies.html",movies = movies)
-
-
 
 @app.route('/adminlog' , methods = ['GET' , 'POST'])
 def adminlog():
@@ -95,7 +94,6 @@ def adminpageindex():
     else:
         return redirect(url_for('adminlog'))
     
-    
 @app.route('/moviepage',methods = ['GET' , 'POST'])
 def Movieadmin():
     adminloggin = session['admin']
@@ -118,12 +116,10 @@ def addmovieadmin():
     movie.addmovie()
     return redirect(url_for('Movieadmin'))
         
-
 @app.route('/addmoviepage',methods = ['GET' , 'POST'])
 def addmoviepageadmin():
     adminloggin = session['admin']
     return render_template('adminpage/addmovie.html',admin = adminloggin)
-
 
 @app.route('/logout')
 def logout():
@@ -158,7 +154,6 @@ def editMovie():
     session['movieedit'] = movieedit[0]
     return render_template('adminpage/editpage.html',name = moviename ,Contry=Contry,Time=Time,imdb=imdb,Year=Year,Gener=Gener,summery=summery,photourl=photourl,admin = adminloggin )
     
-    
 @app.route('/submitedit' , methods=['POST','GET'] )  
 def  submitedit():
     
@@ -175,7 +170,6 @@ def  submitedit():
     mov = models.Movie(movieedit[1],movieedit[2],movieedit[3],movieedit[4],movieedit[5],movieedit[6],movieedit[7],movieedit[8],movieedit[9])
     mov.editemovie(moviename,Contry,Time,year,gener,imdb,summery,url)
     return redirect(url_for('Movieadmin'))
-    
     
 @app.route('/moviesbytag/<tag>')   
 def moviesbytag(tag):
