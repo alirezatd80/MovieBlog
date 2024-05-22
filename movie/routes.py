@@ -2,6 +2,7 @@ from flask import render_template, url_for ,request ,redirect,session
 from movie import app
 from movie import models
 import time
+from movie import emailsend
 
 
 
@@ -62,12 +63,11 @@ def adminlog():
                 if request.method == 'POST':
                     username = request.form.get('username')
                     password = request.form.get('pass')
-                    givinformation = models.Admin.get_admin(username)
+                    session['username'] = username
+                    
                     if models.Admin.is_user(username , password):
 
-                        session['admin'] = givinformation[0]
-                        session['admin_is_log'] = True
-                        session['attempts'] = 0
+                        
                         
                         return redirect(url_for('sendcode'))
 
@@ -83,14 +83,36 @@ def adminlog():
         
 @app.route('/verifycode',methods = ['GET' , 'POST'])  
 def verifycode():
+    if request.method == 'POST':
+        codeuser = request.form.get('verifycode')
+        
+        if codeuser == session['codeuser']:
+            userlog = session['username']
+            givinformation = models.Admin.get_admin(userlog)
+            session['admin'] = givinformation[0]
+            session['admin_is_log'] = True
+            session['attempts'] = 0
+            return redirect(url_for('adminpageindex'))
+        else:
+            message = f'coed is incorrect'
+            return render_template("verifycode.html",message=message)
+            
+             
     return render_template('verifycode.html')
 
 @app.route('/sendcode' ,methods = ['GET' , 'POST'])
 def sendcode():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        code  = emailsend.makecode()
+        session['codeuser'] = code
+        emailsend.SendMail(email,code)
+        
+        return redirect(url_for('verifycode') )
+        
     return render_template('emailsend.html')
 
-def sendemail():
-    pass
+
 
 def checkcode():
     pass

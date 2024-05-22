@@ -2,3 +2,5 @@
 movie/__pycache__/__init__.cpython-312.pyc
 movie/__pycache__/routes.cpython-312.pyc
 movie/config.py
+movie/__pycache__/config.cpython-312.pyc
+movie/__pycache__/emailsend.cpython-312.pyc

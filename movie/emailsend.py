@@ -2,8 +2,8 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import smtplib 
 import pyotp
-import config
-import time
+from movie import config
+
 
 def makecode():
        
@@ -15,7 +15,9 @@ def makecode():
 
     
     otp = totp.now()
-    return otp ,totp
+    return otp 
+
+
 
    
         
@@ -40,9 +42,5 @@ def SendMail(reciveMail,code):
         
         smtp.send_message(message)
         
-def checkcode(code,totp):
-    if totp.verify(code):
-        return True
-    else:
-        return False
+
     
