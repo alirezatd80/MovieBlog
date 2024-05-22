@@ -1,66 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WAIT PAGE</title>
-    <style>
-        #popup {
-            display: none;
-            position: fixed;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            padding: 20px;
-            background-color: white;
-            border: 2px solid #000;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            text-align: center;
-        }
-        #overlay {
-            display: none;
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-        }
-    </style>
+	<title>BanPage</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="../static/adminpage/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/adminpage/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/adminpage/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/adminpage/fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/adminpage/vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="../static/adminpage/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/adminpage/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/adminpage/vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="../static/adminpage/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/adminpage/css/util.css">
+	<link rel="stylesheet" type="text/css" href="../static/adminpage/css/main.css">
+<!--===============================================================================================-->
+
 </head>
 <body>
-<h1>You Are Ban for many try</h1>
-<a href="{{ url_for ('timewait') }}"><button id="showPopupBtn">return to login page</button></a>
+	
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('../static/adminpage/images/1.webp');">
+			<div class="wrap-login100">
+				<div class="login100-form validate-form"  >
+					<span class="login100-form-logo">
+						<i class="zmdi zmdi-close"></i>
+					</span>
 
-<div id="overlay"></div>
-<div id="popup">
-    <p>BanTime: <span id="countdown">10</span> seconds</p>
-</div>
+					<span class="login100-form-title p-b-34 p-t-27">
+						you are ban
+					</span>
 
-<script>
-    document.getElementById('showPopupBtn').addEventListener('click', function() {
-        var countdownElement = document.getElementById('countdown');
-        var popup = document.getElementById('popup');
-        var overlay = document.getElementById('overlay');
-        var countdown = 10;
+					
+					
+                    
+					
 
-        popup.style.display = 'block';
-        overlay.style.display = 'block';
+					<div class="container-login100-form-btn">
+                        <a href="{{ url_for ('timewait') }}">
+						<button id="loginButton" class="login100-form-btn" type="button">
+							back to login
+						</button>
+                    </a>
+                    <br>
+                    <br>
+                    
 
-        countdownElement.textContent = countdown;
+                    
+					</div>
+                    <div id="countdown" style="margin-top: 20px; font-size: 20px; text-align: center; color: white;"></div>
+                    
 
-        var timer = setInterval(function() {
-            countdown--;
-            countdownElement.textContent = countdown;
+					
+				</div>
 
-            if (countdown <= 0) {
-                clearInterval(timer);
-                popup.style.display = 'none';
-                overlay.style.display = 'none';
-            }
-        }, 1000);
-    });
-</script>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+    
+	<script>
+        document.getElementById('loginButton').addEventListener('click', function() {
+            var countdownElement = document.getElementById('countdown');
+            var loginButton = document.getElementById('loginButton');
+            var timeLeft = 10;
+        
+            // Disable the button
+            loginButton.disabled = true;
+        
+            var countdownTimer = setInterval(function() {
+                if (timeLeft <= 0) {
+                    clearInterval(countdownTimer);
+                    countdownElement.innerHTML = 'Time is up!';
+                    // Enable the button again
+                    loginButton.disabled = false;
+                    // Optional: Redirect to the login page
+                    window.location.href = "{{ url_for('timewait') }}";
+                } else {
+                    countdownElement.innerHTML = timeLeft + ' seconds remaining';
+                }
+                timeLeft -= 1;
+            }, 1000);
+        });
+        </script>
+<!--===============================================================================================-->
+	<script src="../static/adminpage/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../static/adminpage/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../static/adminpage/vendor/bootstrap/js/popper.js"></script>
+	<script src="../static/adminpage/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../static/adminpage/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../static/adminpage/vendor/daterangepicker/moment.min.js"></script>
+	<script src="../static/adminpage/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="../static/adminpage/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="../static/adminpage/js/main.js"></script>
+   
+    
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
