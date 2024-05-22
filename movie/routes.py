@@ -35,7 +35,7 @@ def banpage():
     
 @app.route('/timewait')    
 def timewait():
-    time.sleep(10)
+    time.sleep(60)
     session['attempts'] = 0
     return redirect(url_for('adminlog'))
 
@@ -51,15 +51,15 @@ def adminlog():
     if 'attempts' not in session:
         session['attempts'] = 0
         
-    if session['attempts'] >= 1:
+    if session['attempts'] >= 4:
         return redirect(url_for('banpage'))
     
     if 'admin_is_log' in session and session['admin_is_log']:
-        session['attempts'] = 0
+        
         return redirect(url_for('adminpageindex'))
     else:
         if True:
-                session['attempts'] = 0
+                
                 message = 'hi'
                 if request.method == 'POST':
                     username = request.form.get('username')
