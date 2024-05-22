@@ -57,9 +57,8 @@ def adminlog():
         
         return redirect(url_for('adminpageindex'))
     else:
-        if True:
-                
-                message = 'hi'
+            
+                message = ''
                 if request.method == 'POST':
                     username = request.form.get('username')
                     password = request.form.get('pass')
@@ -70,21 +69,28 @@ def adminlog():
                         session['admin_is_log'] = True
                         session['attempts'] = 0
                         
-                        return redirect(url_for('adminpageindex'))
+                        return redirect(url_for('verifycode'))
 
                     else:
                         
                         message = f'PASSWORD OR USERNAME IS INCORRECT'
                         session['attempts'] += 1
-                        
+                        return render_template("adminpagelogin.html",message=message)
 
-                    return render_template("adminpagelogin.html",message=message)
+                    
                 else:
                     return render_template("adminpagelogin.html")
         
 @app.route('/verifycode',methods = ['GET' , 'POST'])  
 def verifycode():
+    return render_template('verifycode.html')
+
+def sendemail():
     pass
+
+def checkcode():
+    pass
+
              
             
     
