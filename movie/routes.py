@@ -12,7 +12,10 @@ from movie import emailsend
 def mainpage():
     numberAdmin = models.Admin.NumberAdmin()
     numberMovie = len(models.Movie.get_all_movies())
-    mov = session['movieday']
+    if 'movieday'  not in session:
+        mov = [' ','']
+    else:
+        mov = session['movieday']
     movieday = mov[0]
     return render_template("app-landing.html",numberAdmin = numberAdmin,numberMovie = numberMovie,movieday=movieday)    
      
